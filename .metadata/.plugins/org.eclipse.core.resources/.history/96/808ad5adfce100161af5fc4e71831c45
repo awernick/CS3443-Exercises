@@ -1,0 +1,73 @@
+import java.util.Arrays;
+
+public class Grades {
+	private String name;
+	private int[] entries;
+	private int ENTRIES_SIZE = 10;
+	
+	
+	public Grades() {
+		this.name = "";
+		this.entries = new int[ENTRIES_SIZE];
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+	
+	public void addEntry(int grade) {
+		if(entries.length == ENTRIES_SIZE) {
+			int[] tmp = new int[entries.length * ENTRIES_SIZE];
+			for(int i = 0; i < entries.length; i++) {
+				tmp[i] = entries[i];
+			}
+			entries = tmp;
+		}
+		entries[entries.length] = grade;
+		Arrays.sort(entries);
+	}
+	
+	public int length() {
+		return this.entries.length;
+	}
+	
+	public double average() {
+		double average = 0;
+
+		for(int i: this.entries) {
+			average += this.entries[i];
+		}
+
+		return average /= this.entries.length;
+	}
+	
+	public double median() {
+		int length = this.entries.length;
+		double median;
+
+		if(length % 2 == 0) {
+			median = ((double) entries[length/2] + (double)entries[length/2 - 1])/2;
+		} else {
+			median = (double) entries[length/2];
+		}
+		
+		return median;
+	}
+	
+	public int maximum() {
+		int length = this.entries.length;
+		return this.entries[length-1];
+	}
+	
+	public int minimum() {
+		return this.entries[0];
+	}
+	
+	public String toString() {
+		return String.format("%s %s", name, Arrays.toString(entries)); 
+	}
+}

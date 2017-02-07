@@ -1,0 +1,56 @@
+import java.util.NoSuchElementException;
+import java.util.Scanner;
+
+public class Date implements Comparable<Date>{
+	
+	// Constants
+	private static String[] MONTH_NAMES = {
+		"", "JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY",
+		"AUGUST", "SEPTEMEBER", "OCTOBER", "NOVEMBER", "DECEMBER"
+	};
+
+	private int day;
+	private int month;
+	private int year;
+
+	// -- Constructor -- 
+	public Date(String string) {
+		Scanner tokenizer = new Scanner(string);
+		try {
+			setMonth(tokenizer.next());
+			setDay(tokenizer.nextInt());
+			setYear(tokenizer.nextInt());
+		} catch (NoSuchElementException e) {
+			System.err.print("Invalid date");
+		}
+	}
+	
+	// -- Setters -- 
+	public void setMonth(String day) {
+		day = day.toUpperCase();
+		day = day.replace('.', ' '); // Replace unnecessary chars
+		for(int i = 1; i <= MONTH_NAMES.length; i++) {
+			if(MONTH_NAMES[i].contains(day)) {
+				setMonth(i); // Set integer representation.
+			}
+		}
+	}
+	
+	public void setMonth(int day) {
+
+	}
+	
+	public void setDay(int day) {
+		
+	}
+	
+	public void setYear(int year) {
+		
+	}
+
+	@Override
+	public int compareTo(Date o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+}

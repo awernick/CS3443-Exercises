@@ -1,0 +1,92 @@
+import java.time.YearMonth;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
+
+public class Date implements Comparable<Date>{
+
+	// Constants
+	private static String[] MONTH_NAMES = {
+		"", "JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY",
+		"AUGUST", "SEPTEMEBER", "OCTOBER", "NOVEMBER", "DECEMBER"
+	};
+	
+	private static String ERROR_MESSAGE = "Invalid Date";
+
+	private int day;
+	private int month;
+	private int year;
+	private boolean valid;
+
+	// -- Constructor -- 
+	public Date(String string) {
+		day   = -1;
+		month = -1;
+		year  = -1;
+
+		Scanner tokenizer = new Scanner(string);
+		try {
+			setMonth(tokenizer.next());
+			int day = tokenizer.nextInt(); // Need to set the year first
+			setYear(tokenizer.nextInt()); 
+			setDay(day);
+			valid = true;
+		} 
+		catch (NoSuchElementException e) { valid = false; } 
+		catch (InvalidDateException d) 	 { valid = false; }
+	}
+	
+	// -- Setters -- 
+	public void setMonth(String month) throws InvalidDateException {
+		month = month.toUpperCase();
+		month = month.replace('.', ' '); // Replace unnecessary chars
+		for(int i = 1; i <= MONTH_NAMES.length; i++) {
+			if(MONTH_NAMES[i].contains(month))
+				setMonth(i); // Set integer representation.
+		}
+	
+		// Print error if the month was not found
+		if(this.month == -1)
+			throw new InvalidDateException("Incorrect month");
+	}
+	
+	private void setMonth(int month) throws InvalidDateException {
+		if(month <= 12 && month >= 1)
+			this.month = month;
+		else
+			throw new InvalidDateException("Incorrect month");
+	}
+	
+	private void setDay(int day) throws InvalidDateException {
+		int month_days = YearMonth.of(this.year, this.month).lengthOfMonth();
+		if(day > month_days || day < 1 )
+			throw new InvalidDateException("Incorrect day");
+	}
+	
+	private void setYear(int year) {
+		this.year = year;
+	}
+
+	@Override
+	public int compareTo(Date o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	@Override
+	public String toString() {
+		if(!valid) {
+			return ERROR_MESSAGE;
+		} else {
+			String titleizedMonth = MONTH_NAMES[this.month].toLowerCase();
+			titleizedMonth = StringUtils.capitalize(titleizedMonth);
+			System.out.printf("Date: %s %d, %d", titleizedMonth, this.day, this.year);
+		}
+	}
+	
+	@SuppressWarnings("serial")
+	public class InvalidDateException extends Exception {
+		public InvalidDateException(String message) {
+			super(message);
+		}
+	}
+}

@@ -1,0 +1,29 @@
+package length;
+
+public class Yard extends Length {
+	public static final double METERS_PER_YARD = 0.9144;
+	
+	public Yard(double length) {
+		super(length);
+	}
+
+	@Override
+	public void add(Length other) {
+		double length = getLength();
+		length += other.toMeters() / METERS_PER_YARD;
+		setLength(length);
+	}
+
+	@Override
+	public String getUnit() {
+		if(getLength() > 1.0)
+			return "yards";
+
+		return "yard";
+	}
+
+	@Override
+	public double toMeters() {
+		return getLength() * METERS_PER_YARD;
+	}
+}

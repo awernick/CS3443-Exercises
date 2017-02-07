@@ -1,0 +1,51 @@
+import java.io.File;
+import java.util.Scanner;
+
+/**
+ * 
+ */
+
+/**
+ * @author awernick
+ *
+ */
+public class Lab1 {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		Scanner in = null;
+
+		try {
+			in = new Scanner(new File("data.txt"));
+		}
+		catch (Exception FileNotFoundException){	
+			System.err.println("Could not open data.txt");
+			System.exit(1);
+		}
+		
+		numberTokenCounter(in);
+	}
+	
+	public static void numberTokenCounter(Scanner input) {
+		int numberCount = 0;
+		int nonCount = 0;
+		double total = 0.0;
+
+		while(input.hasNext()) {
+			if(input.hasNextDouble()) {
+				double d = input.nextDouble();
+				total += d;
+				numberCount++;
+			} else {
+				input.next();
+				nonCount++;
+			}
+		}
+
+		String output = String.format("%d %d %.1f", numberCount, nonCount, total);
+		System.out.println(output);
+	}
+
+}

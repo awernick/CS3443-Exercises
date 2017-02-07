@@ -1,0 +1,27 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class DateTest {
+	public static void main(String[] args) {
+		Scanner in = null;
+		try {
+			in = new Scanner(new File("dates.txt"));
+		} catch(FileNotFoundException e) {	
+			System.err.println("Failed to open dates.txt");
+			System.exit(1);
+		}
+	
+		Date prev = null;
+		while(in.hasNextLine()) {
+			Date date = new Date(in.nextLine());
+			System.out.println(date);
+			if(prev != null) {
+				try {
+					DateRange range = new DateRange(prev, date);
+					System.out.println(range);
+				} catch (InvalidDateException i) { /* NOOP */ }
+			}
+		}
+	}
+}

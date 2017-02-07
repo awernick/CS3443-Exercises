@@ -1,0 +1,87 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Grades {
+	private static final int INITIAL_SIZE = 10;
+
+	private String name;
+	private int[] entries;
+	private int index;
+	
+	
+	public Grades() {
+		this.name = "";
+		this.entries = new int[INITIAL_SIZE];
+		this.index = 0;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+	
+	public void addEntry(int grade) {
+		if(this.index == entries.length) {
+			int[] tmp = new int[entries.length + 1];
+			for(int i = 0; i < entries.length; i++) {
+				tmp[i] = entries[i];
+			}
+			entries = tmp;
+		}
+		entries[index++] = grade;
+	}
+	
+	public int length() {
+		return this.entries.length;
+	}
+	
+	public double average() {
+		double average = 0;
+
+		for(int i: this.entries) {
+			average += i;
+		}
+
+		return average /= this.entries.length;
+	}
+	
+	public double median() {
+		int length = this.entries.length;
+		double median;
+
+		if(length % 2 == 0) {
+			median = ((double) entries[length/2] + (double)entries[length/2 - 1])/2;
+		} else {
+			median = (double) entries[length/2];
+		}
+		
+		return median;
+	}
+	
+	public int maximum() {
+		int max = 0;
+		for(int entry: entries) {
+			if(entry > max) {
+				max = entry;
+			}
+		}
+		return max;
+	}
+	
+	public int minimum() {
+		int min = this.entries[0];
+		for(int entry: entries) {
+			if(entry < min) {
+				min = entry;
+			}
+		}
+		return min;
+	}
+	
+	public String toString() {
+		return String.format("%s %s", name, Arrays.toString(entries)); 
+	}
+}

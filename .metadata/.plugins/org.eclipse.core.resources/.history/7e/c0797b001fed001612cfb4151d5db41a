@@ -1,0 +1,27 @@
+package length;
+
+public class Meter extends Length {
+
+	@Override
+	public void add(Length other) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public String getUnit() {
+		// TODO Auto-generated method stub
+		if(getLength() > 1.0) {
+			return "meters";
+		} else {
+			return "meter";
+		}
+	}
+
+	@Override
+	public double toMeters() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

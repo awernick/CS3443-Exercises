@@ -1,0 +1,7 @@
+
+public class StringUtils {
+	public static String toTitleCase(String lowerCase) {
+		StringBuilder buffer = new StringBuilder();
+		return buffer.toString();
+	}
+}

@@ -1,0 +1,22 @@
+import Date.InvalidDateException;
+
+public class DateRange {
+	private Date date1;
+	private Date date2;
+	
+	public DateRange(Date d1, Date d2) throws InvalidDateException {	
+		if(d1.isValid())
+			this.date1 = d1;
+		else
+			throw new Date.InvalidDateException("First Date parameter is invalid.");
+
+		if(d1.isValid())
+			this.date2 = d2;
+		else
+			throw new Date.InvalidDateException("Second Date parameter is invalid.");
+	}
+	
+	public String toString() {
+		
+	}
+}

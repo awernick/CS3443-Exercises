@@ -1,0 +1,5 @@
+INDEX VERSION 1.127+/Users/awernick/Documents/School/CS3443/.metadata/.plugins/org.eclipse.jdt.core
+3551406877.index
+1033914929.index
+1305132734.index
+2762546059.index

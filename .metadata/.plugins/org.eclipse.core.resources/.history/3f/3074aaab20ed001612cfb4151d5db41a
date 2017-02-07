@@ -1,0 +1,26 @@
+package length;
+
+public class Foot extends Length {
+	public static final double METERS_PER_FOOT = 0.3048;
+	
+	@Override
+	public void add(Length other) {
+		double length = getLength();
+		length += other.toMeters() / METERS_PER_FOOT;
+		setLength(length);
+	}
+
+	@Override
+	public String getUnit() {
+		if(getLength() > 1.0) {
+			return "feet";
+		}
+		return "foot";
+	}
+
+	@Override
+	public double toMeters() {
+		return getLength() * METERS_PER_FOOT;
+	}
+
+}

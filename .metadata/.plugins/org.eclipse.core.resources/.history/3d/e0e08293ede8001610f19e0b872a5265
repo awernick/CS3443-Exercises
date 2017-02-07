@@ -1,0 +1,37 @@
+import java.util.NoSuchElementException;
+import java.util.Scanner;
+
+public class Date implements Comparable<Date>{
+	
+	// Constants
+	private static String[] MONTH_NAMES = {
+		"JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY",
+		"AUGUST", "SEPTEMEBER", "OCTOBER", "NOVEMBER", "DECEMBER"
+	};
+
+	private int day;
+	private int month;
+	private int year;
+	
+	public Date(String string) {
+		Scanner tokenizer = new Scanner(string);
+		try {
+			setDay(tokenizer.next());
+		} catch (NoSuchElementException e) {
+			
+		}
+	}
+	
+	public void setDay(String day) {
+	}
+	
+	public void setDay(int day) {
+		
+	}
+	
+	@Override
+	public int compareTo(Date o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+}

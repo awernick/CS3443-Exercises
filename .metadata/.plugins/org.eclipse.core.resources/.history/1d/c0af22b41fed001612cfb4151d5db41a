@@ -1,0 +1,23 @@
+package length;
+
+public class Inch extends Length {
+
+	@Override
+	public void add(Length other) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public String getUnit() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public double toMeters() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}
